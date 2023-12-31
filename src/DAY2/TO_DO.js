@@ -4,7 +4,7 @@ const TO_DO = () => {
     const[list,setList]=useState(["a "])
     const [add ,setAdd]=useState()
     const[checkedlist, setCheckedlist]=useState(false);
-    const[checkeditem, setCheckeditem]=useState([])
+    const[checkeditem, setCheckeditem]=useState()
     
   
     const addtolist=(x)=>{
