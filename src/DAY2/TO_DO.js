@@ -3,11 +3,13 @@ import React, { useState } from 'react'
 const TO_DO = () => {
     const[list,setList]=useState(["a "])
     const [add ,setAdd]=useState()
-    const[checked, setChecked]=useState(false)
+    const[checkedlist, setCheckedlist]=useState(false);
+    const[checkeditem, setCheckeditem]=useState([])
     
   
     const addtolist=(x)=>{
 setList([...list, x])
+setAdd(" ")
     }
 
     const deletelist=(d)=>{
@@ -17,9 +19,13 @@ setList([...list, x])
 
     }
 
-    const check=(s)=>{
+    const check=(e, index)=>{
+       const value=e.target.checked
+
         
-       setChecked(true)
+       setCheckedlist(value)
+        setCheckeditem(index)
+        
     }
   return (
     <div  className='mt-[2rem]'>
@@ -28,12 +34,14 @@ setList([...list, x])
       
      { list.map((i, index)=>(
         <div className=' flex flex-row justify-center gap-[2rem]'>
-            <input   onClick={()=>check()} type="checkbox" ></input>
+            <input   onChange={(e)=>check(e ,index)} type="checkbox" ></input>
+        <p style={{textDecoration:  checkedlist && checkeditem == index ? "line-through": ""}}>
         <h1>{index} {i}</h1>
-        {checked[i] ? (null):(   <button onClick={()=>deletelist(index)}>Delete </button>)
+        </p>
+         <button onClick={()=>deletelist( index)}>Delete </button>
        
      
-        }
+        
         
         </div>
       ))}
