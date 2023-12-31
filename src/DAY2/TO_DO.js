@@ -4,7 +4,7 @@ const TO_DO = () => {
     const[list,setList]=useState(["a "])
     const [add ,setAdd]=useState()
     const[checkedlist, setCheckedlist]=useState(false);
-    const[checkeditem, setCheckeditem]=useState()
+    const[checkeditem, setCheckeditem]=useState([])
     
   
     const addtolist=(x)=>{
@@ -24,7 +24,7 @@ setAdd(" ")
 
         
        setCheckedlist(value)
-        setCheckeditem(index)
+        setCheckeditem([...checkeditem,index])
         
     }
   return (
@@ -35,7 +35,7 @@ setAdd(" ")
      { list.map((i, index)=>(
         <div className=' flex flex-row justify-center gap-[2rem]'>
             <input   onChange={(e)=>check(e ,index)} type="checkbox" ></input>
-        <p style={{textDecoration:  checkedlist && checkeditem == index ? "line-through": ""}}>
+        <p style={{textDecoration:  checkedlist && checkeditem == -1 ? "line-through": ""}}>
         <h1>{index} {i}</h1>
         </p>
          <button onClick={()=>deletelist( index)}>Delete </button>
